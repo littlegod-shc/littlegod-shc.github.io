@@ -6,15 +6,15 @@
   
   <title>统一建模 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="数据探查根据统一模型设计文档对所有系统进行数据探查  问题1 、比较多数据部分符合，模棱两可解决方法：会先确定好几个重要字段再去进行探查 问题2、同一系统里面多个表符合解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码  统一模型文档设计将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等等，方便">
+  <meta name="description" content="一、数据探查根据统一模型设计文档对所有系统进行数据探查  问题1 、比较多数据部分符合，模棱两可解决方法：会先确定好几个重要字段再去进行探查 问题2、同一系统里面多个表符合解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码  二、统一模型文档设计将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等">
 <meta property="og:type" content="article">
 <meta property="og:title" content="统一建模">
 <meta property="og:url" content="http://example.com/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="数据探查根据统一模型设计文档对所有系统进行数据探查  问题1 、比较多数据部分符合，模棱两可解决方法：会先确定好几个重要字段再去进行探查 问题2、同一系统里面多个表符合解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码  统一模型文档设计将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等等，方便">
+<meta property="og:description" content="一、数据探查根据统一模型设计文档对所有系统进行数据探查  问题1 、比较多数据部分符合，模棱两可解决方法：会先确定好几个重要字段再去进行探查 问题2、同一系统里面多个表符合解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码  二、统一模型文档设计将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-30T01:16:23.000Z">
-<meta property="article:modified_time" content="2022-11-30T15:50:44.691Z">
+<meta property="article:modified_time" content="2022-11-30T16:01:42.047Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -95,39 +95,39 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="数据探查"><a href="#数据探查" class="headerlink" title="数据探查"></a>数据探查</h2><p>根据统一模型设计文档对所有系统进行数据探查</p>
+        <h2 id="一、数据探查"><a href="#一、数据探查" class="headerlink" title="一、数据探查"></a>一、数据探查</h2><p>根据统一模型设计文档对所有系统进行数据探查</p>
 <ul>
 <li>问题1 、比较多数据部分符合，模棱两可<br>解决方法：会先确定好几个重要字段再去进行探查</li>
 <li>问题2、同一系统里面多个表符合<br>解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码</li>
 </ul>
-<h2 id="统一模型文档设计"><a href="#统一模型文档设计" class="headerlink" title="统一模型文档设计"></a>统一模型文档设计</h2><p>将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等等，方便后续不做重复探查</p>
+<h2 id="二、统一模型文档设计"><a href="#二、统一模型文档设计" class="headerlink" title="二、统一模型文档设计"></a>二、统一模型文档设计</h2><p>将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等等，方便后续不做重复探查</p>
 <ul>
 <li>问题1、涉及到多张表融合进入模型，不方便记录和更新主键<br>解决方法：融合一个新dwd表，并且记录在文档设计后面</li>
 </ul>
-<h2 id="数据质量探查"><a href="#数据质量探查" class="headerlink" title="数据质量探查"></a>数据质量探查</h2><p>把所有需要入模型的表进行数据质量探查，包括数据统一</p>
+<h2 id="三、数据质量探查"><a href="#三、数据质量探查" class="headerlink" title="三、数据质量探查"></a>三、数据质量探查</h2><p>把所有需要入模型的表进行数据质量探查，包括数据统一</p>
 <ul>
 <li>问题1、涉及探查的数据表、字段多<br> 解决方法：编写自动化脚本批量探查，表维度、字段维度，java或者sql都可以实现</li>
 </ul>
-<h2 id="建模"><a href="#建模" class="headerlink" title="建模"></a>建模</h2><ul>
+<h2 id="四、建模"><a href="#四、建模" class="headerlink" title="四、建模"></a>四、建模</h2><ul>
 <li>问题1、主模型子模型关系<br>解决方法：先讨论清除有个人想法之后再找大佬确定，有问题再和客户讨论清除排板</li>
 </ul>
-<h3 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h3><p>根据模型设计文档，在datawoks中建好对应的表</p>
+<h3 id="1、建表"><a href="#1、建表" class="headerlink" title="1、建表"></a>1、建表</h3><p>根据模型设计文档，在datawoks中建好对应的表</p>
 <p>– 问题1、模型说明文档和设计文档有差别<br> 解决方法：个人想法–&gt;同事讨论–&gt;大佬明确–&gt;客户开会确定</p>
-<h3 id="清除分区数据"><a href="#清除分区数据" class="headerlink" title="清除分区数据"></a>清除分区数据</h3><p>数据初始化，很多时候数据有误，不能从错误那步开始重跑，而是要将数据初始化，因为经过数据处理后，很多排序ID已经被修改</p>
-<h3 id="数据插入"><a href="#数据插入" class="headerlink" title="数据插入"></a>数据插入</h3><p>将记录好在模型设计文档的表和字段，匹配模型字段插入，并且设计好前后节点依赖</p>
-<h3 id="更新ID"><a href="#更新ID" class="headerlink" title="更新ID"></a>更新ID</h3><p>主模型的直接更新，子模型如果和主模型有关联则需要匹配上主模型后再做相关更新</p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>通过第一个逻辑主键抓出重复且不是第一条的数据–&gt;抓出重复且不是第一条的数据临时存入一个表里–&gt;通过第一个逻辑主键抓出每组重复数据的最新一条–&gt;抓出每组重复数据的最新一条临时存入一个表里–&gt;儿子找爸爸–&gt; 处理重复的数据 PAR_ROW_ID , MODIFICATION_NUM ，且不是第一笔的–&gt;更新重复的RowId 为第一笔的rowId</p>
-<h3 id="数据测试"><a href="#数据测试" class="headerlink" title="数据测试"></a>数据测试</h3><ul>
+<h3 id="2、清除分区数据"><a href="#2、清除分区数据" class="headerlink" title="2、清除分区数据"></a>2、清除分区数据</h3><p>数据初始化，很多时候数据有误，不能从错误那步开始重跑，而是要将数据初始化，因为经过数据处理后，很多排序ID已经被修改</p>
+<h3 id="3、数据插入"><a href="#3、数据插入" class="headerlink" title="3、数据插入"></a>3、数据插入</h3><p>将记录好在模型设计文档的表和字段，匹配模型字段插入，并且设计好前后节点依赖</p>
+<h3 id="4、更新ID"><a href="#4、更新ID" class="headerlink" title="4、更新ID"></a>4、更新ID</h3><p>主模型的直接更新，子模型如果和主模型有关联则需要匹配上主模型后再做相关更新</p>
+<h3 id="5、数据处理"><a href="#5、数据处理" class="headerlink" title="5、数据处理"></a>5、数据处理</h3><p>通过第一个逻辑主键抓出重复且不是第一条的数据–&gt;抓出重复且不是第一条的数据临时存入一个表里–&gt;通过第一个逻辑主键抓出每组重复数据的最新一条–&gt;抓出每组重复数据的最新一条临时存入一个表里–&gt;儿子找爸爸–&gt; 处理重复的数据 PAR_ROW_ID , MODIFICATION_NUM ，且不是第一笔的–&gt;更新重复的RowId 为第一笔的rowId</p>
+<h3 id="6、数据测试"><a href="#6、数据测试" class="headerlink" title="6、数据测试"></a>6、数据测试</h3><ul>
 <li>问题1、数据重复性</li>
 <li>问题2、根据逻辑主键判断儿子数据是否存在于爸爸数据中</li>
 <li>问题3、根据主模型逻辑主键关系不同做不同测试</li>
 <li>问题4、数据质量测试</li>
 </ul>
-<h3 id="日报分析"><a href="#日报分析" class="headerlink" title="日报分析"></a>日报分析</h3>
+<h3 id="7、日报分析"><a href="#7、日报分析" class="headerlink" title="7、日报分析"></a>7、日报分析</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/" data-id="clb3tshdt0000igu69hvm283e" data-title="统一建模" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/" data-id="clb3u663d0001o4u6hh6k1ixp" data-title="统一建模" class="article-share-link">Share</a>
       
       
       
