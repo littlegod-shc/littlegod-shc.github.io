@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>阿里dataworks与接口api数据对接的系列问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="dataworks访问超时限制dataworks访问api接口的数据时候，会有1分钟的限制，也就导致部分接口数据量不稳定的会有时成功有时报错，导致任务失败  对应方法1、添加时间参数，按天增量调用，或者半天等等，让数据在一分钟内识别接收完 对应方法2、将接收到的数据存放到一个缓存位置，例如OSS浏览器，或者前置库等等  接口数据到OSS的异常处理配置好密钥和相关地址，当请求发出数据返回后可以先全部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里dataworks与接口api数据对接的系列问题">
+<meta property="og:url" content="http://example.com/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="dataworks访问超时限制dataworks访问api接口的数据时候，会有1分钟的限制，也就导致部分接口数据量不稳定的会有时成功有时报错，导致任务失败  对应方法1、添加时间参数，按天增量调用，或者半天等等，让数据在一分钟内识别接收完 对应方法2、将接收到的数据存放到一个缓存位置，例如OSS浏览器，或者前置库等等  接口数据到OSS的异常处理配置好密钥和相关地址，当请求发出数据返回后可以先全部">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-30T14:53:02.000Z">
+<meta property="article:modified_time" content="2022-11-30T15:29:29.300Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-阿里dataworks与接口api数据对接的系列问题" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/" class="article-date">
+  <time class="dt-published" datetime="2022-11-30T14:53:02.000Z" itemprop="datePublished">2022-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      阿里dataworks与接口api数据对接的系列问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="dataworks访问超时限制"><a href="#dataworks访问超时限制" class="headerlink" title="dataworks访问超时限制"></a>dataworks访问超时限制</h3><p>dataworks访问api接口的数据时候，会有1分钟的限制，也就导致部分接口数据量不稳定的会有时成功有时报错，导致任务失败</p>
+<ul>
+<li>对应方法1、添加时间参数，按天增量调用，或者半天等等，让数据在一分钟内识别接收完</li>
+<li>对应方法2、将接收到的数据存放到一个缓存位置，例如OSS浏览器，或者前置库等等</li>
+</ul>
+<h3 id="接口数据到OSS的异常处理"><a href="#接口数据到OSS的异常处理" class="headerlink" title="接口数据到OSS的异常处理"></a>接口数据到OSS的异常处理</h3><p>配置好密钥和相关地址，当请求发出数据返回后可以先全部识别完一次推送到OSS指定位置，直接覆盖之前的文件</p>
+<h4 id="异常一、接口数据是经过遍历一次返回数据的ID后再循环遍历里面json数据"><a href="#异常一、接口数据是经过遍历一次返回数据的ID后再循环遍历里面json数据" class="headerlink" title="异常一、接口数据是经过遍历一次返回数据的ID后再循环遍历里面json数据"></a>异常一、接口数据是经过遍历一次返回数据的ID后再循环遍历里面json数据</h4><p>将一次性推送改为追加</p>
+<h4 id="异常二、接口访问过多会导致被限制"><a href="#异常二、接口访问过多会导致被限制" class="headerlink" title="异常二、接口访问过多会导致被限制"></a>异常二、接口访问过多会导致被限制</h4><p>监控</p>
+<h4 id="异常三、接口过多"><a href="#异常三、接口过多" class="headerlink" title="异常三、接口过多"></a>异常三、接口过多</h4><p>触发任务、异步</p>
+<h4 id="异常四、返回字段少"><a href="#异常四、返回字段少" class="headerlink" title="异常四、返回字段少"></a>异常四、返回字段少</h4><p>增加判断，返回空值字段</p>
+<h3 id="dataworks接收OSS数据异常"><a href="#dataworks接收OSS数据异常" class="headerlink" title="dataworks接收OSS数据异常"></a>dataworks接收OSS数据异常</h3><p>数据源为OSS，配置好对应的数据源密钥和地址，选择好对应的文件格式、文件路径和相关配置后，可以直接预览数据，再根据实际情况匹配dataworks目标表字段</p>
+<h4 id="异常一、触发任务接收返回数据"><a href="#异常一、触发任务接收返回数据" class="headerlink" title="异常一、触发任务接收返回数据"></a>异常一、触发任务接收返回数据</h4><p>单条、多条、手动添加</p>
+<h4 id="异常二、数据同步字段匹配异常"><a href="#异常二、数据同步字段匹配异常" class="headerlink" title="异常二、数据同步字段匹配异常"></a>异常二、数据同步字段匹配异常</h4><p>字段类型、字段顺序</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/" data-id="clb3tshea0002igu643k35aby" data-title="阿里dataworks与接口api数据对接的系列问题" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">统一建模</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">November 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/">阿里dataworks与接口api数据对接的系列问题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/">统一建模</a>
+          </li>
+        
+          <li>
+            <a href="/2022/11/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
