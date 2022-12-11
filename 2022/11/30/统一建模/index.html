@@ -14,7 +14,7 @@
 <meta property="og:description" content="一、数据探查根据统一模型设计文档对所有系统进行数据探查  问题1 、比较多数据部分符合，模棱两可解决方法：会先确定好几个重要字段再去进行探查 问题2、同一系统里面多个表符合解决方法：数据对比，每个系统里面肯定会有一个主表，里面所有的表都会引用主表的编码  二、统一模型文档设计将所有数据探查完得到得表格，按系统记录在统一模型文档的系统表里面，并且记录状态，包括是否上云，是否进模型，不能进模型的原因等">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-30T01:16:23.000Z">
-<meta property="article:modified_time" content="2022-12-07T05:49:27.293Z">
+<meta property="article:modified_time" content="2022-12-10T05:13:49.033Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -134,6 +134,9 @@
 <h4 id="2-分析日报提取底层表和字段"><a href="#2-分析日报提取底层表和字段" class="headerlink" title="2.分析日报提取底层表和字段"></a>2.分析日报提取底层表和字段</h4><ul>
 <li>问题1、引用多表，字段重复，不能单个分析<br>  解决方法：全部提取出来，去重，然后再分析进入模型</li>
 <li>问题2、核心表可以对应多个模型，不清楚该进多个还是固定几个模型</li>
+</ul>
+<h4 id="3-字段统计"><a href="#3-字段统计" class="headerlink" title="3.字段统计"></a>3.字段统计</h4><ul>
+<li>问题1、来源表有可能本来模型里面就有，可能要新添加进模型，要每个判断，效率低下</li>
 </ul>
 
       
