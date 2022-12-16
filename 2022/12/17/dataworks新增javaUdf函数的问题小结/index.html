@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Archives: 2022/11 | Hexo</title>
+  <title>dataworks新增javaUdf函数的问题小结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/11/index.html">
+  <meta name="description" content="新增maven项目，根据需求编写相关代码，打包 问题1、依赖，导包 问题2、final 问题3、方法evaluate重载 问题4、代码逻辑问题，导致本地运行没事，调用时候数据不会变化  上传资源上传–&gt;提交–&gt;发布 注册方法 问题1、类名要写清楚路径 问题2、注释清楚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dataworks新增javaUdf函数的问题小结">
+<meta property="og:url" content="http://example.com/2022/12/17/dataworks%E6%96%B0%E5%A2%9EjavaUdf%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%8F%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="新增maven项目，根据需求编写相关代码，打包 问题1、依赖，导包 问题2、final 问题3、方法evaluate重载 问题4、代码逻辑问题，导致本地运行没事，调用时候数据不会变化  上传资源上传–&gt;提交–&gt;发布 注册方法 问题1、类名要写清楚路径 问题2、注释清楚">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-12-16T17:14:04.000Z">
+<meta property="article:modified_time" content="2022-12-16T17:19:19.522Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,77 +73,63 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-30T14:53:02.000Z" itemprop="datePublished">Nov 30</time>
+        <section id="main"><article id="post-dataworks新增javaUdf函数的问题小结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/12/17/dataworks%E6%96%B0%E5%A2%9EjavaUdf%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%8F%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2022-12-16T17:14:04.000Z" itemprop="datePublished">2022-12-17</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/30/%E9%98%BF%E9%87%8Cdataworks%E4%B8%8E%E6%8E%A5%E5%8F%A3api%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%8E%A5%E7%9A%84%E7%B3%BB%E5%88%97%E9%97%AE%E9%A2%98/">阿里dataworks与接口api数据对接的系列问题</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      dataworks新增javaUdf函数的问题小结
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-30T01:16:23.000Z" itemprop="datePublished">Nov 30</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/30/%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1/">统一建模</a>
-    </h1>
-  
+        <h4 id="新增maven项目，根据需求编写相关代码，打包"><a href="#新增maven项目，根据需求编写相关代码，打包" class="headerlink" title="新增maven项目，根据需求编写相关代码，打包"></a>新增maven项目，根据需求编写相关代码，打包</h4><ul>
+<li>问题1、依赖，导包</li>
+<li>问题2、final</li>
+<li>问题3、方法evaluate重载</li>
+<li>问题4、代码逻辑问题，导致本地运行没事，调用时候数据不会变化</li>
+</ul>
+<h4 id="上传资源"><a href="#上传资源" class="headerlink" title="上传资源"></a>上传资源</h4><p>上传–&gt;提交–&gt;发布</p>
+<h4 id="注册方法"><a href="#注册方法" class="headerlink" title="注册方法"></a>注册方法</h4><ul>
+<li>问题1、类名要写清楚路径</li>
+<li>问题2、注释清楚</li>
+</ul>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/11/29/hello-world/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-11-28T16:39:24.562Z" itemprop="datePublished">Nov 29</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/11/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/12/17/dataworks%E6%96%B0%E5%A2%9EjavaUdf%E5%87%BD%E6%95%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%B0%8F%E7%BB%93/" data-id="clbqrzjgo0000s8u60nnwdjhy" data-title="dataworks新增javaUdf函数的问题小结" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/12/07/java%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">java基础练习</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
